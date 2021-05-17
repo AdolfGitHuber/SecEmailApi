@@ -25,7 +25,7 @@ file = Email.attachment_download(email[0], 190556001, 'FILE_NAME') # Возвр�
 
 # Echo функция, ожидает входящее письмо, и возвращает полное его содержимое
 	
-	message = Email.message_handler(email[0]) # Result: {'id': 190556001, 'from': 'adolf_githuber@rambler.com', 'subject': '123', 'date': '2021-05-17 13:39:01', 'attachments': [], 'body': '', 'textBody': '\n\xa0\nПроверка\n\xa0\n--\nАртём Сапгиров', 'htmlBody': ''}
+message = Email.message_handler(email[0]) # Result: {'id': 190556001, 'from': 'adolf_githuber@rambler.com', 'subject': '123', 'date': '2021-05-17 13:39:01', 'attachments': [], 'body': '', 'textBody': '\n\xa0\nПроверка\n\xa0\n--\nАртём Сапгиров', 'htmlBody': ''}
 	
 ```
 
