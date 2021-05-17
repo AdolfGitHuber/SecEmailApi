@@ -29,7 +29,6 @@ class Email:
         subject	Subject
         date	Receive date
         """
-
         email = get_login(email)
         request = requests.get(f'https://www.1secmail.com/api/v1/?action=getMessages&login={email[0]}&domain={email[1]}').json()
         return request
