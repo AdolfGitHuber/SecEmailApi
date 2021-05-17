@@ -4,7 +4,7 @@
 
 # Функции:
 
-```
+```python
 from api import Email
 
 # Получаем список почт.
