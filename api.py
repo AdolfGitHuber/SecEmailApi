@@ -1,13 +1,6 @@
 import requests
 from time import sleep
 
-def get_login(email: str):
-    try:
-        email = email.split('@')
-    except Exception as Error:
-        raise Error
-    return email
-
 
 class Email:
     @staticmethod
@@ -16,8 +9,7 @@ class Email:
         :param count: How many email addresses you need
         :return: Array with email addresses
         """
-        request = requests.get(f'https://www.1secmail.com/api/v1/?action=genRandomMailbox&count={str(count)}').json()
-        return request
+        return requests.get(f'https://www.1secmail.com/api/v1/?action=genRandomMailbox&count={count}').json()
 
     @staticmethod
     def check_mailbox(email: str):
@@ -29,9 +21,8 @@ class Email:
         subject	Subject
         date	Receive date
         """
-        email = get_login(email)
-        request = requests.get(f'https://www.1secmail.com/api/v1/?action=getMessages&login={email[0]}&domain={email[1]}').json()
-        return request
+        email_data = email.split('@')
+        return requests.get(f'https://www.1secmail.com/api/v1/?action=getMessages&login={email_data[0]}&domain={email_data[1]}').json()
 
     @staticmethod
     def fetching_message(email: str, message_id: int):
@@ -48,9 +39,9 @@ class Email:
             textBody	Message body (text)
             htmlBody	Message body (html)
         """
-        email = get_login(email)
-        request = requests.get(f'https://www.1secmail.com/api/v1/?action=readMessage&login={email[0]}&domain={email[1]}&id={str(message_id)}').json()
-        return request
+        email_data = email.split('@')
+        return requests.get(f'https://www.1secmail.com/api/v1/?action=readMessage&login={email_data[0]}&domain={email_data[1]}&id={message_id}').json()
+
 
     @staticmethod
     def attachment_download(email: str, message_id: int, file: str):
@@ -60,9 +51,8 @@ class Email:
         :param file: filename of attachment
         :return: file
         """
-        email = get_login(email)
-        request = requests.get(f'https://www.1secmail.com/api/v1/?action=download&login={email[0]}&domain={email[1]}&id={str(message_id)}&file={file}')
-        return request
+        email_data = email.split('@')
+        return requests.get(f'https://www.1secmail.com/api/v1/?action=download&login={email_data[0]}&domain={email_data[1]}&id={message_id}&file={file}')
 
     @staticmethod
     def message_handler(email: str):
